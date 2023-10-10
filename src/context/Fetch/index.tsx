@@ -35,14 +35,14 @@ export const useFetchContext = () => useContext<IFetchContext>(Fetch);
 const FetchProvider: React.FC<IProps> = ({ children }) => {
 	const [cashierData, setCashierData] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const CHECKBOX_API = `${DOMAIN}/vchasnokasa/v1`;
+	const VCHASNOKASA_API = `${DOMAIN}/vchasnokasa/v1`;
 	const { errorNotification } = useErrorNotification();
 
 	const getCashierData = async () => {
 		setLoading(true);
 		try {
 			const token = await getToken();
-			const res = await fetch(`${CHECKBOX_API}/cashregisters/get`, {
+			const res = await fetch(`${VCHASNOKASA_API}/cashregisters/get`, {
 				headers: { Accept: 'application/json', 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
 			});
 			const data: ICashierData = await res.json();
@@ -58,7 +58,7 @@ const FetchProvider: React.FC<IProps> = ({ children }) => {
 		setLoading(true);
 		try {
 			const token = await getToken();
-			fetch(`${CHECKBOX_API}/cashregisters/delete`, {
+			fetch(`${VCHASNOKASA_API}/cashregisters/delete`, {
 				method: 'DELETE',
 				headers: { Accept: 'application/json', 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
 			}).then(() => getCashierData());
@@ -73,7 +73,7 @@ const FetchProvider: React.FC<IProps> = ({ children }) => {
 		setLoading(true);
 		try {
 			const token = await getToken();
-			fetch(`${CHECKBOX_API}/cashregisters/createOrUpdate`, {
+			fetch(`${VCHASNOKASA_API}/cashregisters/createOrUpdate`, {
 				method: 'POST',
 				headers: { Accept: 'application/json', 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
 				body: JSON.stringify(body),

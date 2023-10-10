@@ -7,7 +7,7 @@ const Dotenv = require('dotenv-webpack');
 
 const { NODE_ENV } = process.env;
 const isDev = NODE_ENV === 'development';
-const appName = 'checkBoxApp';
+const appName = 'vchasnoKasaApp';
 
 module.exports = {
 	entry: './src/index.ts',
